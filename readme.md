@@ -5,11 +5,13 @@ Following the free Youtube course by [Mosh](https://www.youtube.com/channel/UCWv
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/d56mG7DezGs?si=A7lJxDQKCcFcJw1m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-if you're reading this on GitHub, embedding doesn't work. you should jyst click the link in src, give Mosh a like, follow and subscribe because he puts a lot of great education out into the world that's freely available. 
+if you're reading this on GitHub, embedding doesn't work. you should jyst click the link in src, give Mosh a like, follow and subscribe because he puts a lot of great education out into the world that's freely available to anyone with an internet connection. 
 
 cross referencing with Google Gemini for some extra answers and throwing in my own opinions as someone who hasn't written code for a team project in ~6 years
 
----
+This is almost entirely for my own benefit, but if anyone else finds it helpful you're welcome to have at it. 
+
+
 
 ## What is TypeScript
 
@@ -464,7 +466,7 @@ Generics are a fundamental part of modern TypeScript and are used extensively in
 ##### tsc doesn't minify the output JS - which is weird to me
 To minify your code, you need to use a separate tool. The standard workflow is to first use tsc to compile your TypeScript files into JavaScript, and then use a dedicated minifier to process the resulting .js files.
 
-##### about the example code: 
+## about the example code: 
 server side rendered template node JS webserver that works on markdown files. why not? My undergrad degree is in Web Development so I might as well use it for once. 
 
 to run it, git pull the directory, compile it with tsc and run the server.js file in /dist
@@ -474,3 +476,50 @@ for containers, your entrypoint is /dist/server.js
 is it useful? No. I would never really use this. If you just want to host a markdown file public there are so many options than paying for runtime compute on any VPS. 
 
 So what's the point? I'll leave that to your imagination. Peace ✌️
+
+## More things to go do and look at:
+
+If you made it this far you're probably enthused with Typescript, bless. 
+
+The best and most definitive reference for TypeScript is the official [TypeScript documentation](https://www.typescriptlang.org/docs/), specifically the [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html).
+
+
+The Handbook is the single most important resource for learning and understanding TypeScript. It's written by the same team that develops the language and is always up-to-date with the latest features. It's designed to be a comprehensive guide for all levels of developers.
+
+- For Beginners: It has dedicated sections like "TypeScript for JavaScript Programmers" and "TypeScript for Java/C# Programmers" that cater to your existing knowledge.
+
+- For All Levels: It starts with foundational concepts like everyday types and then progressively moves to more advanced topics like generics, type manipulation, and conditional types.
+
+- For Professionals: It also includes a detailed TSConfig Reference, which is essential for configuring the compiler for different project needs.
+
+While other books, courses, and community guides are valuable, they often draw their information from this official source. For the most accurate, reliable, and up-to-date information on the language itself, the Handbook is the gold standard.
+
+---
+Here are some highly recommended third-party resources from Google Gemini for learning and mastering TypeScript.
+
+##### 📚 Books
+* **"Effective TypeScript" by Dan Vanderkam**: A fantastic book that goes beyond the basics. It's structured as a series of 62 specific, actionable tips to help you write cleaner, more idiomatic TypeScript. It's an excellent resource for anyone who has a solid grasp of the fundamentals and wants to level up their skills.
+
+* **"Programming TypeScript" by Boris Cherny**: This book is a comprehensive guide for all skill levels. It's praised for its clear explanations and practical examples, making it a great choice for both newcomers and those looking to deepen their understanding of more advanced topics.
+
+***
+
+##### 💻 Online Courses
+* **Frontend Masters**: Offers a variety of high-quality courses on TypeScript from industry experts like Steve Kinney and Mike North. Their content is always up-to-date and dives deep into both the theoretical underpinnings and practical application of the language.
+
+* **ZTM (Zero to Mastery)**: Andrei Neagoie's "Complete TypeScript Developer" course is a popular choice. It's known for its project-based approach, which helps solidify learning by building real-world applications.
+
+* **Ultimate Courses**: Their "TypeScript Deep Dive" course, led by Josh Carroll, is another excellent option. It focuses on taking you from a basic understanding to mastery, covering even the most complex aspects of the language.
+
+***
+
+##### 🌐 Blogs and Newsletters
+* **TypeScript Blog (Official)**: While an official resource, it's worth mentioning. It's the best place to stay updated on new features, releases, and the future direction of the language.
+
+* **Marius Schulz's Blog**: Known for his in-depth articles on advanced TypeScript topics and his insights into compiler behavior. His content is highly respected within the TypeScript community.
+
+* **Dev.to and Medium**: A search for "TypeScript" on these platforms will yield countless articles and tutorials from a wide range of developers. They are great for finding solutions to specific problems or seeing how others are using the language in real-world scenarios.
+
+---
+
+Check out Dmytro Zharii's [awesome-typescript repostiory](https://github.com/dzharii/awesome-typescript) for things to go do. 

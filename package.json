@@ -15,6 +15,10 @@
     "test": "run"
   },
   "devDependencies": {
+    "@types/marked": "^5.0.2",
     "@types/node": "^24.3.0"
+  },
+  "dependencies": {
+    "marked": "^16.1.2"
   }
 }
