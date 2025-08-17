@@ -13,7 +13,9 @@ cross referencing with Google Gemini for some extra answers and throwing in my o
 
 ## What is TypeScript
 
-it's a superset of JS Anything you can do with JS can be done with TS. 
+it's a superset of JS Anything you can do with JS can be done with TS. The output JavaScript code is pretty verbose, lengthy and deliberate. It would be a pain in the face to write this much code manually, and Javascript as a language makes it awkward to right code that follows best practices. 
+
+TypeScript takes the advantages of syntax from mature languages like C# to make Javascript more approachable and gives it more "out-of-the-box" features.
 
 ### Benefits
 
@@ -145,8 +147,6 @@ for style guides, just use a linter, nobody's got time to reformat for any Senio
 https://palantir.github.io/tslint/ is advisable but is deprecated. 
 
 
-
-
 ## setting the ts config file to determine how transpiler(tsc) behaves
 
 most settings are commented out by default
@@ -157,7 +157,6 @@ if you remove a value you can press ctrl+space to see what can be added
 
 if you wnat to change any values here it's mostly going to be for the "target" parameter that is the version of JS that your code will be transpiled to
 or modules 
-
 
 
 ---
@@ -209,8 +208,10 @@ let sales = 12345; //assumed to be a number
 let language = "Typescript";  //assumed to be a string
 let isPublished = true; //assumed to be a boolean
 let ambiguousObject; //assumed to be a "any". 
-
 ```
+
+TypeScript doesn't offer a way to create fixed-size number types like int32 or float64 directly out of the box. It inherits its core number type directly from JavaScript.
+
 
 ### the any type
 
@@ -241,31 +242,227 @@ in TS we have strict typing, right, so we don't party like that anymore.
 
 We basically behave more like the other "grown up languages", in our shirts and ties, and we declare our arrays to be a list of typed variables: 
 
-```TypeScript
-
+```Typescript
 let numbers: number[] = [1,2,3];
 ```
 
 or 
 
-```TypeScript
+```Typescript
 let strings: string[] = ["one","two", "three"];
 ```
-
-```TypeScript
-//I'm really unsure about this
-let numbers: objects[] = [{nul},{1,2,3},{"one", "two", "three"}];
-```
-
 
 
 ### Tuples
 
+like an array with a fixed length and each element has a particular type, thing is it creates a regular JS array in the transpiled output 
+
+example: 
+```TypeScript
+let user: [string, string, number, boolean] = ["Jack", "Gerrard", 189234, true];
+```
+
+but if we stray from that exact order and cardinality we break it. 
+
+Its really useful for key/value pairs and some other use cases. 
+
+```TypeScript
+let user: [number, string] = [0189234,"Jack Gerrard"];
+```
+
 ### Enums
+
+represent a list of related constants, same concept as OOP languages
+
+syntactically useful, and conforms to good practices
 
 ### Functions
 
+This isn't new to TS, functions exist in JS too. They're a core part of JS. other languages have a similar concept called a method. You "call" or "invoke" a block of logic to run. 
+
+tsconfig has a parameter for `noUnusedParameters` that applies to functions.
+
+tsconfig has a parameter for `noImplicitReturns` that applies to functions.
+
+tsconfig has a parameter for `noUnusedLocals` that applies to functions. 
+
+There all good practice's to enable, they make your code more good. 
+
+the major difference is that you would need to type your input parameters and the parameters cardinality is more strict
+
+A good tactic is to set a default value for your input parameters for the case that they aren't passed on the invokation. What does get passed in over-rides the default value. 
+
+```Typescript
+function calculateTax(income: number, taxYear=2022): number{
+    if(taxYear <= 2022){
+        return income * 1.2
+    }
+    return income * 1.3
+}
+
+calculateTax(10,000)
+calculateTax(10,000, 2024)
+```
+
+
+functions must return a value that would need a type too, even if that's `void`
+
+I want to talk about anonymous functions here, or fat arrow functions as they're called in Javascript. 
+
+Anonymous inner functions, often called **lambda functions** or **arrow functions**, are functions defined without a name. They are commonly used for short, one-off tasks like callbacks or event handlers. The core concepts are the same between JavaScript and TypeScript, but TypeScript adds crucial type safety.
+
+### JavaScript
+
+In JavaScript, an anonymous inner function is simply a function expression that is not assigned to a variable, often passed directly as an argument to another function. The introduction of ES6 arrow functions (`=>`) made the syntax more concise and, importantly, solved a common problem with the `this` keyword.
+
+  * **Syntax**: Anonymous functions can be declared using the traditional `function` keyword or the modern arrow function syntax.
+
+    ```javascript
+    // Traditional anonymous function
+    setTimeout(function() {
+      console.log('Hello from a callback!');
+    }, 1000);
+
+    // Modern arrow function (preferred)
+    const numbers = [1, 2, 3];
+    const doubled = numbers.map(item => item * 2);
+    ```
+
+  * **Behavior**: In JavaScript, functions are "first-class citizens," meaning they can be treated as values and passed around. Anonymous functions are perfect for this, but they are not **hoisted**, so they must be defined before they are called. A major behavioral difference is how the traditional `function` keyword handles `this` (dynamically based on the call site) versus how an arrow function handles `this` (lexically, inheriting it from the surrounding scope).
+
+-----
+
+### TypeScript
+
+TypeScript inherits all of JavaScript's function concepts and syntax, but it adds a layer of type safety on top. This is the main difference. You can still create anonymous inner functions the same way, but TypeScript allows you to explicitly type their parameters and return value.
+
+  * **Syntax**: TypeScript uses the same syntax as JavaScript, but you can add type annotations.
+    ```typescript
+    // Arrow function with explicit type annotations
+    const doubled = numbers.map((item: number): number => item * 2);
+
+    // Anonymous function with an explicitly typed callback signature
+    function myCallback(callback: (message: string) => void) {
+      callback('Hello!');
+    }
+    ```
+  * **Behavior**: TypeScript's type system performs a key check called **type inference**. For simple cases like the `map` example, TypeScript will often figure out the types for you. However, you can provide explicit types to make the code clearer or to satisfy a specific function signature. This prevents you from passing a function with the wrong number of arguments or incorrect types, which is a common source of bugs in vanilla JavaScript.
+
+### Comparison Summary
+
+| Feature | JavaScript | TypeScript |
+| :--- | :--- | :--- |
+| **Declaration** | Same syntax, either `function() {}` or `() => {}` | Same syntax, but with optional type annotations. |
+| **Type Safety** | No type checking. Relies on runtime checks and developer awareness. | **Compile-time type checking.** You can define the function's expected signature for parameters and return values. |
+| **Best Use** | Quick callbacks and one-off tasks where the type is simple or not critical. | The standard for all anonymous functions, ensuring code is reliable and self-documenting. |
+| **Key Advantage** | Concise syntax, especially with arrow functions. | **Significantly improved developer experience and bug prevention** by ensuring that functions are used correctly. |
+
 ### Objects 
+
+Objects are more type dependant in TS than in JS and require a schema. You can't do what you could in Javascript where you create them on the fly with whatever cardinality or types worked best at the time. 
+
+The schema is defined in the type section. 
+
+This is somewhat similar to a class in C# or Java but, not that similar. 
+
+```typescript
+let employee: {
+    id: number,
+    name: string
+} = {
+    id: 1,
+    name: "Jack"
+    }
+}
+```
+
+
+
+
+### Generics
+
+These aren't mentioned in Mosh's video
+Yes, **TypeScript has generics**. They are a feature that allows you to create reusable components that can work with a variety of types rather than a single one. This provides a way to write more flexible and type-safe code.
+
+-----
+
+### What are Generics?
+
+Generics are a tool for creating components that are both reusable and type-safe. They work like a placeholder for a type. When you use a generic function or class, you specify the actual type that the placeholder represents.
+
+### How Generics Work
+
+Imagine you want a function that returns the first element of an array. Without generics, you might write a function for each type you need, or you could use the `any` type, which would lose all type safety.
+
+```typescript
+// Without generics, using 'any' loses type safety
+function getFirstItem(items: any[]): any {
+  return items[0];
+}
+
+const result = getFirstItem([1, 2, 3]); // result is 'any', no type-checking
+```
+
+With generics, you can write a single, type-safe function. You use a type variable, commonly written as `T`, to represent the generic type.
+
+```typescript
+// With generics, 'T' is a placeholder for the type
+function getFirstItem<T>(items: T[]): T {
+  return items[0];
+}
+
+const numbers = getFirstItem([1, 2, 3]); // 'numbers' is of type number
+const names = getFirstItem(['a', 'b', 'c']); // 'names' is of type string
+```
+
+In this example, the `<T>` after the function name indicates that `T` is a generic type parameter. When you call the function, TypeScript infers the type of `T` based on the argument you provide.
+
+### Generics in Classes and Interfaces
+
+Generics aren't just for functions; you can also use them to create generic classes and interfaces. This is useful for creating data structures like a `Queue` or `Stack` that can hold any type of data while maintaining type safety.
+
+```typescript
+// Generic interface for a user response
+interface ApiResponse<T> {
+  data: T;
+  status: number;
+}
+
+// Generic class for a simple data store
+class DataStore<T> {
+  private data: T[] = [];
+
+  add(item: T) {
+    this.data.push(item);
+  }
+
+  getAll(): T[] {
+    return this.data;
+  }
+}
+
+const userStore = new DataStore<string>();
+userStore.add("Alice");
+userStore.add("Bob");
+```
+
+Generics are a fundamental part of modern TypeScript and are used extensively in libraries and frameworks to provide robust, type-safe APIs.
+
+### Other Types worth mentioning are: 
+
+1. **unknown**
+> The unknown type is a safer alternative to any. A variable of type unknown can hold any value, but you can't perform operations on it without first narrowing its type. For example, you can't directly call a method on an unknown variable. This forces you to add a type check, such as typeof or instanceof, making your code more explicit and robust.
+
+3. **void**
+>The void type is used for functions that don't return a value. In JavaScript, a function without a return statement implicitly returns undefined. TypeScript's void makes this explicit, which is helpful for documenting function intent and preventing misuse.
+
+4. **never**
+> The never type represents a value that will never occur. This is typically used for functions that either throw an error or contain an infinite loop. The compiler uses never to ensure that a function's execution path is truly unreachable.
+
+#### some other details
+
+##### tsc doesn't minify the output JS - which is weird to me
+To minify your code, you need to use a separate tool. The standard workflow is to first use tsc to compile your TypeScript files into JavaScript, and then use a dedicated minifier to process the resulting .js files.
 
 ##### about the example code: 
 server side rendered template node JS webserver that works on markdown files. why not? My undergrad degree is in Web Development so I might as well use it for once. 
@@ -273,3 +470,7 @@ server side rendered template node JS webserver that works on markdown files. wh
 to run it, git pull the directory, compile it with tsc and run the server.js file in /dist
 
 for containers, your entrypoint is /dist/server.js
+
+is it useful? No. I would never really use this. If you just want to host a markdown file public there are so many options than paying for runtime compute on any VPS. 
+
+So what's the point? I'll leave that to your imagination. Peace ✌️
