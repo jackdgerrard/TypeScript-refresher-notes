@@ -93,6 +93,8 @@ const server = http.createServer((req: IncomingMessage, res: ServerResponse) => 
     }
 });
 
+
+
 // Generate the base index.html template before starting the server
 generateIndexHtmlTemplate().then(() => {
     server.listen(port, hostname, () => {

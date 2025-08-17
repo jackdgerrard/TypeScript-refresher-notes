@@ -1,7 +1,11 @@
-#Typescript
+# Typescript
 
 Following the free Youtube course by [Mosh](https://www.youtube.com/channel/UCWv7vMbMWH4-V0ZXdmDpPBA/join) here: 
+
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/d56mG7DezGs?si=A7lJxDQKCcFcJw1m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+if you're reading this on GitHub, embedding doesn't work. you should jyst click the link in src, give Mosh a like, follow and subscribe because he puts a lot of great education out into the world that's freely available. 
 
 cross referencing with Google Gemini for some extra answers and throwing in my own opinions as someone who hasn't written code for a team project in ~6 years
 
@@ -17,7 +21,7 @@ Static typing over JS default dynamic typing - TS is JS with type checking, so w
 
 typing is about how you declare you're variables. 
 
-VS code and Codium have great features for linting, code completion, refactoring 
+VS code and Codium have great features for linting, code completion(intellisense), refactoring, 
 
 new features for cleaner and consise code compatible with more browsers and run times
 
@@ -184,5 +188,88 @@ In VScode,
 - ensure launch.json is in the .gitignore
 - it tells vscode to use tsc to transpile the code first
 
+this gets funky when using WSL with Codium, I'm not partaking in this section of Mosh's video 
+
+## Typescript in detail 
+
+JS has types like: 
+- number
+- string
+- boolean
+- null
+- undefined
+- object
+
+Typescript has these as well as the following to facilitate it's strict typing 
+
+Typescript makes assumptions of what type a variable should be based on the value. Typescript calls this an *implicit* type
+
+```Typescript
+let sales = 12345; //assumed to be a number
+let language = "Typescript";  //assumed to be a string
+let isPublished = true; //assumed to be a boolean
+let ambiguousObject; //assumed to be a "any". 
+
+```
+
+### the any type
+
+a new type for TS. 
+
+if it's not initialized, as above, it's assumed to be an "any". 
+
+using any is not a good practice, it defeats the point of typescripts strict typing feature. 
+
+a good practice is to use noImplicityAny in the tsconfig section to turn off implicit any commands - this is like hard mode, but if you've worked with OOP languages before you'll be fine
+
+### arrays
+
+in JS we decalre an array like this: 
+```JavaScript
+var numbers = [1,2,3]; 
+```
+
+and also 
+
+```JavaScript
+let numbers = [1,true, 'three', {4, false, 'six'}]; 
+```
+
+because JS is *wild* and doesn't give af about types
+
+in TS we have strict typing, right, so we don't party like that anymore. 
+
+We basically behave more like the other "grown up languages", in our shirts and ties, and we declare our arrays to be a list of typed variables: 
+
+```TypeScript
+
+let numbers: number[] = [1,2,3];
+```
+
+or 
+
+```TypeScript
+let strings: string[] = ["one","two", "three"];
+```
+
+```TypeScript
+//I'm really unsure about this
+let numbers: objects[] = [{nul},{1,2,3},{"one", "two", "three"}];
+```
+
+
+
+### Tuples
+
+### Enums
+
+### Functions
+
+### Objects 
+
 ##### about the example code: 
 server side rendered template node JS webserver that works on markdown files. why not? My undergrad degree is in Web Development so I might as well use it for once. 
+
+to run it, git pull the directory, compile it with tsc and run the server.js file in /dist
+
+for containers, your entrypoint is /dist/server.js
