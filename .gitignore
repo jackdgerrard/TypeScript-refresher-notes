@@ -1,0 +1,27 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm/
+
+# TypeScript
+*.tsbuildinfo
+dist/ # Your compiled JavaScript output directory
+.tsc/ # Sometimes used for incremental compilation outputs
+
+# IDEs and Editors
+.vscode/ # VS Code settings (optional, but often preferred to be ignored)
+.idea/   # IntelliJ IDEA
+*.sublime-project
+*.sublime-workspace
+
+# OS and temporary files
+.DS_Store
+Thumbs.db
+.env # Environment variables (crucial for sensitive data)
+.env.*
+*.log
+*.tmp
+*.bak

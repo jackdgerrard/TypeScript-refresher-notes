@@ -1,0 +1,20 @@
+{
+  "name": "ts-000",
+  "version": "1.0.0",
+  "description": "Following the free Youtube course by [Mosh](https://www.youtube.com/channel/UCWv7vMbMWH4-V0ZXdmDpPBA/join) here: \r <iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/d56mG7DezGs?si=A7lJxDQKCcFcJw1m\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+  "keywords": [
+    "typescript",
+    "markdown",
+    "tooling"
+  ],
+  "license": "ISC",
+  "author": "Jack Gerrard",
+  "type": "commonjs",
+  "main": "/dist/index.js",
+  "scripts": {
+    "test": "run"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0"
+  }
+}
