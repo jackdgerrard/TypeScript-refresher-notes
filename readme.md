@@ -3,6 +3,8 @@
 Following the free Youtube course by [Mosh](https://www.youtube.com/channel/UCWv7vMbMWH4-V0ZXdmDpPBA/join) here: 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/d56mG7DezGs?si=A7lJxDQKCcFcJw1m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+cross referencing with Google Gemini for some extra answers and throwing in my own opinions as someone who hasn't written code for a team project in ~6 years
+
 ---
 
 ## What is TypeScript
@@ -57,6 +59,7 @@ dist/ # Your compiled JavaScript output directory
 
 # OS and temporary files
 .DS_Store
+launch.json
 Thumbs.db
 .env # Environment variables (crucial for sensitive data)
 .env.*
@@ -84,6 +87,7 @@ dist/ # Your compiled JavaScript output directory
 
 #### IDEs and Editors
 .vscode/ # VS Code settings (optional, but often preferred to be ignored)
+launch.json
 .idea/   # IntelliJ IDEA
 *.sublime-project
 *.sublime-workspace
@@ -162,6 +166,23 @@ Open your tsconfig.json and ensure the compilerOptions section contains:
 - "include": ["server.ts"]: Tells TypeScript which files to compile.
 
 ---
+
+## How to debugging
+
+when code doesn't do what you thought it would 
+
+check the tsconfig.json and under emit enable sourceMap to check how source code in TS matches to the JS code that gets output from transpiler, you'' see this in index.js.map, but note that it's not for humans to really understand. It's for debuggers. 
+
+use breakpoints if your text editor supports it. VSCode, Codium And Visual Studio do. breakpoints will run until a breakpoint at which point the process will pause 
+
+In VScode,
+-  go to the "Run and Debug tab"
+- "create a launch.json file"
+- from dropdown, pick "node.js"
+- a new file is created, launch.json
+- add `"preLaunchTask": "tsc: build - tsconfig.json",` to launch.json in between "program" and "output files"
+- ensure launch.json is in the .gitignore
+- it tells vscode to use tsc to transpile the code first
 
 ##### about the example code: 
 server side rendered template node JS webserver that works on markdown files. why not? My undergrad degree is in Web Development so I might as well use it for once. 

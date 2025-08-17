@@ -9,6 +9,7 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 dist/ # Your compiled JavaScript output directory
+dist/* # Your compiled JavaScript output directories contents
 .tsc/ # Sometimes used for incremental compilation outputs
 
 # IDEs and Editors
@@ -16,6 +17,7 @@ dist/ # Your compiled JavaScript output directory
 .idea/   # IntelliJ IDEA
 *.sublime-project
 *.sublime-workspace
+launch.json
 
 # OS and temporary files
 .DS_Store
