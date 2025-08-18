@@ -1,51 +1,56 @@
-# Typescript
 
-Following the free Youtube course by [Mosh](https://www.youtube.com/channel/UCWv7vMbMWH4-V0ZXdmDpPBA/join) here: 
-
+Following the free Youtube tutorial by [Mosh](https://www.youtube.com/channel/UCWv7vMbMWH4-V0ZXdmDpPBA/join) here:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/d56mG7DezGs?si=A7lJxDQKCcFcJw1m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-if you're reading this on GitHub, embedding doesn't work. you should jyst click the link in src, give Mosh a like, follow and subscribe because he puts a lot of great education out into the world that's freely available to anyone with an internet connection. 
+  
+The best and most definitive reference for TypeScript is the official [TypeScript documentation](https://www.typescriptlang.org/docs/), specifically the [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html).  
 
 cross referencing with Google Gemini for some extra answers and throwing in my own opinions as someone who hasn't written code for a team project in ~6 years
 
-This is almost entirely for my own benefit, but if anyone else finds it helpful you're welcome to have at it. 
-
-
+This is almost entirely for my own benefit, but if anyone else finds it helpful you're welcome to have at it.
 
 ## What is TypeScript
 
-it's a superset of JS Anything you can do with JS can be done with TS. The output JavaScript code is pretty verbose, lengthy and deliberate. It would be a pain in the face to write this much code manually, and Javascript as a language makes it awkward to right code that follows best practices. 
+JavaScript isn't inherently well suited to Object oriented programming or modern developer workflows. Package managers like NPM have made re-usable code libraries more manageable and syntax updates like fat arrow functions and the "class" keyword have ensured that Javascript stays relevant and useful. NodeJS revolutionised the Javascript developers world by changing what was fundamentally possible with the language by providing a reliable and consistent runtime that exists outside of a web browser, which opened the door 
+
+it's a superset of JS Anything you can do with JS can be done with TS. The output JavaScript code is pretty verbose, lengthy and deliberate. It would be a pain in the face to write this much code manually, and Javascript as a language makes it awkward to right code that follows best practices.
 
 TypeScript takes the advantages of syntax from mature languages like C# to make Javascript more approachable and gives it more "out-of-the-box" features.
-
 ### Benefits
+Static typing over JS default dynamic typing - TS is JS with type checking, so we can catch mistakes at transpilation instead of weird edge cases found in prod.
 
-Static typing over JS default dynamic typing - TS is JS with type checking, so we can catch mistakes at transpilation instead of weird edge cases found in prod. 
+typing is about how you declare you're variables.
 
-typing is about how you declare you're variables. 
-
-VS code and Codium have great features for linting, code completion(intellisense), refactoring, 
+VS code and Codium have great features for linting, code completion(intellisense), refactoring,
 
 new features for cleaner and consise code compatible with more browsers and run times
 
+  
+  
 
-### supposed drawbacks 
+### supposed drawbacks
+
 - transpilation is supposedly a drawback but it's grand
+
 - requires more thought to be put into the types you declare your variables to be.
 
+  
+  
 
-## install 
- do this - https://nodejs.org/en/download
- then, do this - https://www.typescriptlang.org/download/
+## install
 
- install it globally to make use of the `tsc` CLI command
+ do this - https://nodejs.org/en/download
+ then, do this - https://www.typescriptlang.org/download/
 
- don't over think it unless you're working on prod repo's. If you're reading this you're not, so just do that and that. 
+ install it globally to make use of the `tsc` CLI command. 
+  
+ don't over think it unless you're working on prod repo's. If you're reading this you're not, so just do that and that.
+## for Git repossitories, here are some files that are good to ignore:
 
-## for Git repossitories, here are some files that are good to ignore: 
+  
 
-```
+``` .Gitignore
 # Node.js
 node_modules/
 npm-debug.log*
@@ -58,10 +63,12 @@ yarn-error.log*
 *.tsbuildinfo
 dist/ # Your compiled JavaScript output directory
 .tsc/ # Sometimes used for incremental compilation outputs
+  
 
 # IDEs and Editors
+
 .vscode/ # VS Code settings (optional, but often preferred to be ignored)
-.idea/   # IntelliJ IDEA
+.idea/   # IntelliJ IDEA
 *.sublime-project
 *.sublime-workspace
 
@@ -69,54 +76,29 @@ dist/ # Your compiled JavaScript output directory
 .DS_Store
 launch.json
 Thumbs.db
-.env # Environment variables (crucial for sensitive data)
+.env # environment variables (crucial for sensitive data)
 .env.*
 *.log
 *.tmp
 *.bak
 ```
 
+  
+
 When pushing your Node.js TypeScript project to GitHub, you should ignore files and directories that are generated, temporary, or contain sensitive information. This keeps your repository clean, lean, and secure, and avoids committing files that might cause conflicts or are specific to your local environment.
 
+  
 You do this by creating a file named .gitignore in the root of your project. Here's a comprehensive list of common items to include:
 
-#### Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-.npm/
-
-#### TypeScript
-*.tsbuildinfo
-dist/ # Your compiled JavaScript output directory
-.tsc/ # Sometimes used for incremental compilation outputs
-
-#### IDEs and Editors
-.vscode/ # VS Code settings (optional, but often preferred to be ignored)
-launch.json
-.idea/   # IntelliJ IDEA
-*.sublime-project
-*.sublime-workspace
-
-#### OS and temporary files
-.DS_Store
-Thumbs.db
-.env # Environment variables (crucial for sensitive data)
-.env.*
-*.log
-*.tmp
-*.bak
-
 ### Why Ignore These Items?
+
 node_modules/: This directory contains all the packages (dependencies) your project relies on. It can be very large. Anyone cloning your repository can easily regenerate this folder by running npm install (or yarn install, pnpm install).
 
 npm-debug.log*, yarn-debug.log*, etc.: These are debug logs generated by package managers (npm, yarn, pnpm). They're only relevant for troubleshooting on your local machine.
 
 *.tsbuildinfo: This file is created by TypeScript for faster incremental builds. It's specific to your local build process.
 
-dist/: This is your output directory where TypeScript compiles your .ts files into .js files. You only commit source code (.ts), not compiled output. Your tsconfig.json correctly points to this.
+dist/: This is your output directory where TypeScript compiles your .ts files into .js files. You only commit source code (.ts), not compiled output. Your tsconfig.json correctly points to this
 
 .vscode/, .idea/, etc.: These directories contain IDE-specific configuration files (e.g., workspace settings, debugger configurations). While sometimes useful to share in a team, they often contain personal preferences or paths specific to individual developers and can cause unnecessary churn in version control. It's usually best to ignore them.
 
@@ -126,400 +108,779 @@ dist/: This is your output directory where TypeScript compiles your .ts files in
 
 *.log, *.tmp, *.bak: These are general temporary or backup files that aren't part of your project's source code.
 
-By adding these to your .gitignore file, Git will automatically ignore them when you run git add or git commit, 
-
-
+By adding these to your .gitignore file, Git will automatically ignore them when you run git add or git commit.
 ## syntax
 
-JS: 
+  
 
-```var age=20;```
+JS:`var age=20;
 
 now age can be changed to a string
 
-TS: 
-```let age: number = 20;```
+TS: `let age: number = 20;
 
-
-now age can't ever be a string
-
+now age can't ever be a string because we've assigned it the type of `number`
 
 for style guides, just use a linter, nobody's got time to reformat for any Senior dev's opinion on the correct styling but you should be neat and consistent:
 
-https://palantir.github.io/tslint/ is advisable but is deprecated. 
+https://palantir.github.io/tslint/ is advisable but is deprecated.
 
-
+ESLint is recommended. It's worth doing a google search to determine what tools are recommended and safe.
 ## setting the ts config file to determine how transpiler(tsc) behaves
+
+  
 
 most settings are commented out by default
 
+  
+
 create a typescript project with `tsc --init` if it's installed globally.
+
+  
 
 if you remove a value you can press ctrl+space to see what can be added
 
-if you wnat to change any values here it's mostly going to be for the "target" parameter that is the version of JS that your code will be transpiled to
-or modules 
+  
 
+if you wnat to change any values here it's mostly going to be for the "target" parameter that is the version of JS that your code will be transpiled to
+
+or modules
+
+  
+  
 
 ---
+
 For nodeJS
 
-Open your tsconfig.json and ensure the compilerOptions section contains: 
+  
+
+Open your tsconfig.json and ensure the compilerOptions section contains:
+
+  
 
 - "moduleResolution": "node": Instructs TypeScript to use Node.js's module resolution strategy to find imports.
+
 - "types": ["node"]: This explicitly tells the compiler to include the Node.js type definitions that you just installed.
+
 - "include": ["server.ts"]: Tells TypeScript which files to compile.
 
+  
+
 ---
+
+  
 
 ## How to debugging
 
-when code doesn't do what you thought it would 
+  
 
-check the tsconfig.json and under emit enable sourceMap to check how source code in TS matches to the JS code that gets output from transpiler, you'' see this in index.js.map, but note that it's not for humans to really understand. It's for debuggers. 
+when code doesn't do what you thought it would
 
-use breakpoints if your text editor supports it. VSCode, Codium And Visual Studio do. breakpoints will run until a breakpoint at which point the process will pause 
+  
+
+check the tsconfig.json and under emit enable sourceMap to check how source code in TS matches to the JS code that gets output from transpiler, you'' see this in index.js.map, but note that it's not for humans to really understand. It's for debuggers.
+
+  
+
+use breakpoints if your text editor supports it. VSCode, Codium And Visual Studio do. breakpoints will run until a breakpoint at which point the process will pause
+
+  
 
 In VScode,
--  go to the "Run and Debug tab"
+
+-  go to the "Run and Debug tab"
+
 - "create a launch.json file"
+
 - from dropdown, pick "node.js"
+
 - a new file is created, launch.json
+
 - add `"preLaunchTask": "tsc: build - tsconfig.json",` to launch.json in between "program" and "output files"
+
 - ensure launch.json is in the .gitignore
+
 - it tells vscode to use tsc to transpile the code first
 
-this gets funky when using WSL with Codium, I'm not partaking in this section of Mosh's video 
+  
 
-## Typescript in detail 
+this gets funky when using WSL with Codium, I'm not partaking in this section of Mosh's video
 
-JS has types like: 
+  
+
+## Typescript in detail
+
+  
+
+JS has types like:
+
 - number
+
 - string
+
 - boolean
+
 - null
+
 - undefined
+
 - object
 
-Typescript has these as well as the following to facilitate it's strict typing 
+  
+
+Typescript has these as well as the following to facilitate it's strict typing
+
+  
 
 Typescript makes assumptions of what type a variable should be based on the value. Typescript calls this an *implicit* type
 
+  
+
 ```Typescript
+
 let sales = 12345; //assumed to be a number
-let language = "Typescript";  //assumed to be a string
+
+let language = "Typescript";  //assumed to be a string
+
 let isPublished = true; //assumed to be a boolean
-let ambiguousObject; //assumed to be a "any". 
+
+let ambiguousObject; //assumed to be a "any".
+
 ```
+
+  
 
 TypeScript doesn't offer a way to create fixed-size number types like int32 or float64 directly out of the box. It inherits its core number type directly from JavaScript.
 
+  
+  
 
 ### the any type
 
-a new type for TS. 
+  
 
-if it's not initialized, as above, it's assumed to be an "any". 
+a new type for TS.
 
-using any is not a good practice, it defeats the point of typescripts strict typing feature. 
+  
+
+if it's not initialized, as above, it's assumed to be an "any".
+
+  
+
+using any is not a good practice, it defeats the point of typescripts strict typing feature.
+
+  
 
 a good practice is to use noImplicityAny in the tsconfig section to turn off implicit any commands - this is like hard mode, but if you've worked with OOP languages before you'll be fine
 
+  
+
 ### arrays
 
-in JS we decalre an array like this: 
-```JavaScript
-var numbers = [1,2,3]; 
-```
+  
 
-and also 
+in JS we decalre an array like this:
 
 ```JavaScript
-let numbers = [1,true, 'three', {4, false, 'six'}]; 
+
+var numbers = [1,2,3];
+
 ```
+
+  
+
+and also
+
+  
+
+```JavaScript
+
+let numbers = [1,true, 'three', {4, false, 'six'}];
+
+```
+
+  
 
 because JS is *wild* and doesn't give af about types
 
-in TS we have strict typing, right, so we don't party like that anymore. 
+  
 
-We basically behave more like the other "grown up languages", in our shirts and ties, and we declare our arrays to be a list of typed variables: 
+in TS we have strict typing, right, so we don't party like that anymore.
+
+  
+
+We basically behave more like the other "grown up languages", in our shirts and ties, and we declare our arrays to be a list of typed variables:
+
+  
 
 ```Typescript
+
 let numbers: number[] = [1,2,3];
+
 ```
 
-or 
+  
+
+or
+
+  
 
 ```Typescript
+
 let strings: string[] = ["one","two", "three"];
+
 ```
 
+  
+  
 
 ### Tuples
 
-like an array with a fixed length and each element has a particular type, thing is it creates a regular JS array in the transpiled output 
+  
 
-example: 
+like an array with a fixed length and each element has a particular type, thing is it creates a regular JS array in the transpiled output
+
+  
+
+example:
+
 ```TypeScript
+
 let user: [string, string, number, boolean] = ["Jack", "Gerrard", 189234, true];
+
 ```
 
-but if we stray from that exact order and cardinality we break it. 
+  
 
-Its really useful for key/value pairs and some other use cases. 
+but if we stray from that exact order and cardinality we break it.
+
+  
+
+Its really useful for key/value pairs and some other use cases.
+
+  
 
 ```TypeScript
+
 let user: [number, string] = [0189234,"Jack Gerrard"];
+
 ```
+
+  
 
 ### Enums
 
+  
+
 represent a list of related constants, same concept as OOP languages
+
+  
 
 syntactically useful, and conforms to good practices
 
+  
+
 ### Functions
 
-This isn't new to TS, functions exist in JS too. They're a core part of JS. other languages have a similar concept called a method. You "call" or "invoke" a block of logic to run. 
+  
+
+This isn't new to TS, functions exist in JS too. They're a core part of JS. other languages have a similar concept called a method. You "call" or "invoke" a block of logic to run.
+
+  
 
 tsconfig has a parameter for `noUnusedParameters` that applies to functions.
 
+  
+
 tsconfig has a parameter for `noImplicitReturns` that applies to functions.
 
-tsconfig has a parameter for `noUnusedLocals` that applies to functions. 
+  
 
-There all good practice's to enable, they make your code more good. 
+tsconfig has a parameter for `noUnusedLocals` that applies to functions.
+
+  
+
+There all good practice's to enable, they make your code more good.
+
+  
 
 the major difference is that you would need to type your input parameters and the parameters cardinality is more strict
 
-A good tactic is to set a default value for your input parameters for the case that they aren't passed on the invokation. What does get passed in over-rides the default value. 
+  
+
+A good tactic is to set a default value for your input parameters for the case that they aren't passed on the invokation. What does get passed in over-rides the default value.
+
+  
 
 ```Typescript
+
 function calculateTax(income: number, taxYear=2022): number{
-    if(taxYear <= 2022){
-        return income * 1.2
-    }
-    return income * 1.3
+
+    if(taxYear <= 2022){
+
+        return income * 1.2
+
+    }
+
+    return income * 1.3
+
 }
 
+  
+
 calculateTax(10,000)
+
 calculateTax(10,000, 2024)
+
 ```
 
+  
+  
+  
+  
 
 functions must return a value that would need a type too, even if that's `void`
 
-I want to talk about anonymous functions here, or fat arrow functions as they're called in Javascript. 
+  
+
+I want to talk about anonymous functions here, or fat arrow functions as they're called in Javascript.
+
+  
 
 Anonymous inner functions, often called **lambda functions** or **arrow functions**, are functions defined without a name. They are commonly used for short, one-off tasks like callbacks or event handlers. The core concepts are the same between JavaScript and TypeScript, but TypeScript adds crucial type safety.
 
+  
+
 ### JavaScript
+
+  
 
 In JavaScript, an anonymous inner function is simply a function expression that is not assigned to a variable, often passed directly as an argument to another function. The introduction of ES6 arrow functions (`=>`) made the syntax more concise and, importantly, solved a common problem with the `this` keyword.
 
-  * **Syntax**: Anonymous functions can be declared using the traditional `function` keyword or the modern arrow function syntax.
+  
 
-    ```javascript
-    // Traditional anonymous function
-    setTimeout(function() {
-      console.log('Hello from a callback!');
-    }, 1000);
+  * **Syntax**: Anonymous functions can be declared using the traditional `function` keyword or the modern arrow function syntax.
 
-    // Modern arrow function (preferred)
-    const numbers = [1, 2, 3];
-    const doubled = numbers.map(item => item * 2);
-    ```
+  
 
-  * **Behavior**: In JavaScript, functions are "first-class citizens," meaning they can be treated as values and passed around. Anonymous functions are perfect for this, but they are not **hoisted**, so they must be defined before they are called. A major behavioral difference is how the traditional `function` keyword handles `this` (dynamically based on the call site) versus how an arrow function handles `this` (lexically, inheriting it from the surrounding scope).
+    ```javascript
+
+    // Traditional anonymous function
+
+    setTimeout(function() {
+
+      console.log('Hello from a callback!');
+
+    }, 1000);
+
+  
+
+    // Modern arrow function (preferred)
+
+    const numbers = [1, 2, 3];
+
+    const doubled = numbers.map(item => item * 2);
+
+    ```
+
+  
+
+  * **Behavior**: In JavaScript, functions are "first-class citizens," meaning they can be treated as values and passed around. Anonymous functions are perfect for this, but they are not **hoisted**, so they must be defined before they are called. A major behavioral difference is how the traditional `function` keyword handles `this` (dynamically based on the call site) versus how an arrow function handles `this` (lexically, inheriting it from the surrounding scope).
+
+  
 
 -----
+
+  
 
 ### TypeScript
 
+  
+
 TypeScript inherits all of JavaScript's function concepts and syntax, but it adds a layer of type safety on top. This is the main difference. You can still create anonymous inner functions the same way, but TypeScript allows you to explicitly type their parameters and return value.
 
-  * **Syntax**: TypeScript uses the same syntax as JavaScript, but you can add type annotations.
-    ```typescript
-    // Arrow function with explicit type annotations
-    const doubled = numbers.map((item: number): number => item * 2);
+  
 
-    // Anonymous function with an explicitly typed callback signature
-    function myCallback(callback: (message: string) => void) {
-      callback('Hello!');
-    }
-    ```
-  * **Behavior**: TypeScript's type system performs a key check called **type inference**. For simple cases like the `map` example, TypeScript will often figure out the types for you. However, you can provide explicit types to make the code clearer or to satisfy a specific function signature. This prevents you from passing a function with the wrong number of arguments or incorrect types, which is a common source of bugs in vanilla JavaScript.
+  * **Syntax**: TypeScript uses the same syntax as JavaScript, but you can add type annotations.
+
+    ```typescript
+
+    // Arrow function with explicit type annotations
+
+    const doubled = numbers.map((item: number): number => item * 2);
+
+  
+
+    // Anonymous function with an explicitly typed callback signature
+
+    function myCallback(callback: (message: string) => void) {
+
+      callback('Hello!');
+
+    }
+
+    ```
+
+  * **Behavior**: TypeScript's type system performs a key check called **type inference**. For simple cases like the `map` example, TypeScript will often figure out the types for you. However, you can provide explicit types to make the code clearer or to satisfy a specific function signature. This prevents you from passing a function with the wrong number of arguments or incorrect types, which is a common source of bugs in vanilla JavaScript.
+
+  
 
 ### Comparison Summary
 
+  
+
 | Feature | JavaScript | TypeScript |
+
 | :--- | :--- | :--- |
+
 | **Declaration** | Same syntax, either `function() {}` or `() => {}` | Same syntax, but with optional type annotations. |
+
 | **Type Safety** | No type checking. Relies on runtime checks and developer awareness. | **Compile-time type checking.** You can define the function's expected signature for parameters and return values. |
+
 | **Best Use** | Quick callbacks and one-off tasks where the type is simple or not critical. | The standard for all anonymous functions, ensuring code is reliable and self-documenting. |
+
 | **Key Advantage** | Concise syntax, especially with arrow functions. | **Significantly improved developer experience and bug prevention** by ensuring that functions are used correctly. |
 
-### Objects 
+  
 
-Objects are more type dependant in TS than in JS and require a schema. You can't do what you could in Javascript where you create them on the fly with whatever cardinality or types worked best at the time. 
+### Objects
 
-The schema is defined in the type section. 
+  
 
-This is somewhat similar to a class in C# or Java but, not that similar. 
+Objects are more type dependant in TS than in JS and require a schema. You can't do what you could in Javascript where you create them on the fly with whatever cardinality or types worked best at the time.
+
+The schema is defined in the type section in `{}`.
+
+This is somewhat similar to a class in C# or Java but, not that similar.
+
+  
+```typescript
+let employee: {
+
+    id: number, //see we have n number
+
+    name: string // and a string
+
+} = {
+
+    id: 1, // now we set the ID of the employee according to the schema
+
+    name: "Jack"
+
+    }
+
+}
+```
+
+---
+We also have the ability to make them optional: 
 
 ```typescript
 let employee: {
-    id: number,
-    name: string
+
+    id: number, //see we have a number
+
+    name?: string // and a string that's optional
+
 } = {
-    id: 1,
-    name: "Jack"
-    }
+
+    id: 1, // now we set the ID of the employee according to the schema
+
+    }
+
+}
+```
+  
+  ---
+
+it's not a great practice but sometimes it's needed. 
+Also, we can make a value `readonly` so that it can't be mutated after it's set. without this, we can modify the numeric value of id at any time, which isn't a great idea. 
+
+
+```typescript
+let employee: {
+
+    readonly id: number, //see we have n number that can only be set one time when the object is initialised 
+
+    name: string // and a string
+
+} = {
+
+    id: 1, // now we set the ID of the employee according to the schema
+
+    name: "Jack"
+
+    }
+
+}
+```
+
+---
+
+Like other languages, an object can have methods, specifically. we're assuming you've used lambdas in other languages or fat arrows in Javascript before: 
+
+```typescript
+let employee: {
+   id: number, 
+   name: string,
+   retire: (date: Date) => void //
+} = {
+    id: 1, 
+    name: "Jack"
+		retire: (date: Date) => {
+		console.info(date)
+		}
+    }
+
 }
 ```
 
 
+### Type Alias
+
+define the schema as a type alias instead of in the 
+```Typescript
+type Employee ={
+	id: number, 
+	name: string,
+	retire: (date: Date) => void //
+}
+
+let employee: Employee ={
+	id: 1, 
+    name: "Jack"
+	retire: (date: Date) => {
+		console.info(date)
+		}
+    }
+}
+```
 
 
+### Unison
+
+When items have more than one type. 
+
+it's purely for compiler type checking, it's not part of the javascript output
+
+useful in function parameters where a variable can be different types
+
+```Typescript
+
+function kgToLbs(weight: number | string): void{
+	let chosenType: string = typeof(weight);
+	console.info("it's a ",chosenType)
+}
+
+kgToLbs(10);
+kgToLbs("ten KGs")
+```
+
+we can't have an item be more than one type. There's a way to combine a unison and a type alias to make a type intersection, but it's above the scope of what a beginner needs to know for TS. 
+
+### Literal and nullable Types
+
+So, we want to limit the amount of variables that we can assign to a variable using the same | operator. we call this a literal type
+
+We could do something like  `let quantity: 50 = 51;` but it doesn't really make sense to do so. 
+
+So we create a type alias for a literal type: 
+``` Typescript
+
+type Quantity = 50 | 100; 
+
+let quanity: Quanity = 100; 
+let anotherQuantity: Quantity = 50; 
+
+let badQuantity: Quanity=25; //- Type '25' is not assignable to type 'Quantity'.
+
+```
+
+
+Typescript is strict about null, undefined and NaN exceptions - it's the point of Typescript
+
+in tsconfig.json we have a parameter for `strictNullChecks` that's commented out by default. and is affected by the "strict" option, so even if it's commented out, and "strict" is set to true, it's still enabled. It's not a good practice to turn it off
+
+Sometimes we want to have a null value though, for this reason we have a workaround by using the union operator 
+
+or by doing a "null check". (`if value != null { //proceed}` )
+
+
+### optional chaining
+
+
+
+option property access operator - `?`
+
+means we can proceed if it's not falsey, instead of breaking the transpilation because a falsey value was found 
+
+
+```Typescript
+console.log(customer?.birthday)
+```
+
+
+
+---
 ### Generics
-
 These aren't mentioned in Mosh's video
-Yes, **TypeScript has generics**. They are a feature that allows you to create reusable components that can work with a variety of types rather than a single one. This provides a way to write more flexible and type-safe code.
 
------
+ **TypeScript has generics**. They are a feature that allows you to create reusable components that can work with a variety of types rather than a single one. This provides a way to write more flexible and type-safe code.
 
 ### What are Generics?
 
+  
+
 Generics are a tool for creating components that are both reusable and type-safe. They work like a placeholder for a type. When you use a generic function or class, you specify the actual type that the placeholder represents.
+
+  
 
 ### How Generics Work
 
+  
+
 Imagine you want a function that returns the first element of an array. Without generics, you might write a function for each type you need, or you could use the `any` type, which would lose all type safety.
 
+  
+
 ```typescript
+
 // Without generics, using 'any' loses type safety
+
 function getFirstItem(items: any[]): any {
-  return items[0];
+
+  return items[0];
+
 }
 
+  
+
 const result = getFirstItem([1, 2, 3]); // result is 'any', no type-checking
+
 ```
+
+  
 
 With generics, you can write a single, type-safe function. You use a type variable, commonly written as `T`, to represent the generic type.
 
+  
+
 ```typescript
+
 // With generics, 'T' is a placeholder for the type
+
 function getFirstItem<T>(items: T[]): T {
-  return items[0];
+
+  return items[0];
+
 }
 
+  
+
 const numbers = getFirstItem([1, 2, 3]); // 'numbers' is of type number
+
 const names = getFirstItem(['a', 'b', 'c']); // 'names' is of type string
+
 ```
+
+  
 
 In this example, the `<T>` after the function name indicates that `T` is a generic type parameter. When you call the function, TypeScript infers the type of `T` based on the argument you provide.
 
+  
+
 ### Generics in Classes and Interfaces
+
+  
 
 Generics aren't just for functions; you can also use them to create generic classes and interfaces. This is useful for creating data structures like a `Queue` or `Stack` that can hold any type of data while maintaining type safety.
 
+  
+
 ```typescript
+
 // Generic interface for a user response
+
 interface ApiResponse<T> {
-  data: T;
-  status: number;
+
+  data: T;
+
+  status: number;
+
 }
+
+  
 
 // Generic class for a simple data store
+
 class DataStore<T> {
-  private data: T[] = [];
 
-  add(item: T) {
-    this.data.push(item);
-  }
+  private data: T[] = [];
 
-  getAll(): T[] {
-    return this.data;
-  }
+  
+
+  add(item: T) {
+
+    this.data.push(item);
+
+  }
+
+  
+
+  getAll(): T[] {
+
+    return this.data;
+
+  }
+
 }
 
+  
+
 const userStore = new DataStore<string>();
+
 userStore.add("Alice");
+
 userStore.add("Bob");
+
 ```
+
+  
 
 Generics are a fundamental part of modern TypeScript and are used extensively in libraries and frameworks to provide robust, type-safe APIs.
 
-### Other Types worth mentioning are: 
+  
+
+### Other Types worth mentioning are:
+
+  
 
 1. **unknown**
+
 > The unknown type is a safer alternative to any. A variable of type unknown can hold any value, but you can't perform operations on it without first narrowing its type. For example, you can't directly call a method on an unknown variable. This forces you to add a type check, such as typeof or instanceof, making your code more explicit and robust.
 
-3. **void**
+  
+
+2. **void**
+
 >The void type is used for functions that don't return a value. In JavaScript, a function without a return statement implicitly returns undefined. TypeScript's void makes this explicit, which is helpful for documenting function intent and preventing misuse.
 
-4. **never**
+  
+
+3. **never**
+
 > The never type represents a value that will never occur. This is typically used for functions that either throw an error or contain an infinite loop. The compiler uses never to ensure that a function's execution path is truly unreachable.
+
+  
 
 #### some other details
 
+  
+
 ##### tsc doesn't minify the output JS - which is weird to me
+
 To minify your code, you need to use a separate tool. The standard workflow is to first use tsc to compile your TypeScript files into JavaScript, and then use a dedicated minifier to process the resulting .js files.
 
-## about the example code: 
-server side rendered template node JS webserver that works on markdown files. why not? My undergrad degree is in Web Development so I might as well use it for once. 
-
-to run it, git pull the directory, compile it with tsc and run the server.js file in /dist
-
-for containers, your entrypoint is /dist/server.js
-
-is it useful? No. I would never really use this. If you just want to host a markdown file public there are so many options than paying for runtime compute on any VPS. 
-
-So what's the point? I'll leave that to your imagination. Peace ✌️
-
-## More things to go do and look at:
-
-If you made it this far you're probably enthused with Typescript, bless. 
-
-The best and most definitive reference for TypeScript is the official [TypeScript documentation](https://www.typescriptlang.org/docs/), specifically the [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html).
-
-
-The Handbook is the single most important resource for learning and understanding TypeScript. It's written by the same team that develops the language and is always up-to-date with the latest features. It's designed to be a comprehensive guide for all levels of developers.
-
-- For Beginners: It has dedicated sections like "TypeScript for JavaScript Programmers" and "TypeScript for Java/C# Programmers" that cater to your existing knowledge.
-
-- For All Levels: It starts with foundational concepts like everyday types and then progressively moves to more advanced topics like generics, type manipulation, and conditional types.
-
-- For Professionals: It also includes a detailed TSConfig Reference, which is essential for configuring the compiler for different project needs.
-
-While other books, courses, and community guides are valuable, they often draw their information from this official source. For the most accurate, reliable, and up-to-date information on the language itself, the Handbook is the gold standard.
-
----
-Here are some highly recommended third-party resources from Google Gemini for learning and mastering TypeScript.
-
-##### 📚 Books
-* **"Effective TypeScript" by Dan Vanderkam**: A fantastic book that goes beyond the basics. It's structured as a series of 62 specific, actionable tips to help you write cleaner, more idiomatic TypeScript. It's an excellent resource for anyone who has a solid grasp of the fundamentals and wants to level up their skills.
-
-* **"Programming TypeScript" by Boris Cherny**: This book is a comprehensive guide for all skill levels. It's praised for its clear explanations and practical examples, making it a great choice for both newcomers and those looking to deepen their understanding of more advanced topics.
-
-***
-
-##### 💻 Online Courses
-* **Frontend Masters**: Offers a variety of high-quality courses on TypeScript from industry experts like Steve Kinney and Mike North. Their content is always up-to-date and dives deep into both the theoretical underpinnings and practical application of the language.
-
-* **ZTM (Zero to Mastery)**: Andrei Neagoie's "Complete TypeScript Developer" course is a popular choice. It's known for its project-based approach, which helps solidify learning by building real-world applications.
-
-* **Ultimate Courses**: Their "TypeScript Deep Dive" course, led by Josh Carroll, is another excellent option. It focuses on taking you from a basic understanding to mastery, covering even the most complex aspects of the language.
-
-***
-
-##### 🌐 Blogs and Newsletters
-* **TypeScript Blog (Official)**: While an official resource, it's worth mentioning. It's the best place to stay updated on new features, releases, and the future direction of the language.
-
-* **Marius Schulz's Blog**: Known for his in-depth articles on advanced TypeScript topics and his insights into compiler behavior. His content is highly respected within the TypeScript community.
-
-* **Dev.to and Medium**: A search for "TypeScript" on these platforms will yield countless articles and tutorials from a wide range of developers. They are great for finding solutions to specific problems or seeing how others are using the language in real-world scenarios.
-
----
-
-Check out Dmytro Zharii's [awesome-typescript repostiory](https://github.com/dzharii/awesome-typescript) for things to go do. 
+  
+  
